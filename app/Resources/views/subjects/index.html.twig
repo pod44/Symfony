@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subjects list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Startdate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td><a href="{{ path('subjects_show', { 'id': subject.id }) }}">{{ subject.id }}</a></td>
+                <td>{{ subject.title }}</td>
+                <td>{{ subject.description }}</td>
+                <td>{% if subject.startDate %}{{ subject.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('subjects_show', { 'id': subject.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('subjects_edit', { 'id': subject.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subjects_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

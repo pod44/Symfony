@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subjects</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ subject.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ subject.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ subject.description }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{% if subject.startDate %}{{ subject.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subjects_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('subjects_edit', { 'id': subject.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

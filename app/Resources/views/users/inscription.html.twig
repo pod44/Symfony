@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Inscription</h1>
+
+<!-- Si le tableau $errors n'est pas vide, on affiche les erreurs une a une -->
+{% if(!empty($errors)): %}
+
+    <div class="alert alert-danger">
+        <p>Le formulaire d'inscription contient des erreurs</p>
+        <ul>
+            {% foreach ($errors as $error): %}
+
+                <li><?= $error; ?></li
+
+            {% endforeach; %}
+        </ul>
+    </div>
+{% endif; %}
+
+
+        <fieldset class="fieldsetInscription">
+            <form action="" method="post" enctype="multipart/form-data">
+                <label>Pseudo:</label><br/>
+                <input type="text" name="pseudo" class="form-control" required/><br/>
+                <label>Prenom:</label><br/>
+                <input type="text" name="prenom" class="form-control" required/><br/>
+                <label>Nom:</label><br/>
+                <input type="text" name="nom" class="form-control" required/><br/>
+                <label>Date de naissance:</label><br/>
+                <input type="text" name="dateNaissance" class="form-control" placeholder="aaaa-mm-jj" required/><br/>
+                <label>Mail:</label><br/>
+                <input type="email" name="mail" class="form-control" required/><br/>
+                <label>Mot de passe:</label><br/>
+                <input type="password" name="password" class="form-control" required/><br/>
+                <button type="submit" class="btn btn-primary">M'inscrire</button>
+            </form>
+        </fieldset>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Mail</th>
+                <th>Datenaissance</th>
+                <th>Password</th>
+                <th>Avatar</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('users_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.pseudo }}</td>
+                <td>{{ user.mail }}</td>
+                <td>{% if user.dateNaissance %}{{ user.dateNaissance|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.avatar }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('users_show', { 'id': user.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('users_edit', { 'id': user.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('users_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

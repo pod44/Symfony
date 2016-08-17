@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>S'inscrire</h1>
+    <fieldset class="fieldsetInscription">
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path('login') }}" method="post">
+        <table class="tableFieldset">
+
+            <tr align="center"><td><label for="pseudo">Pseudo:</label></td></tr>
+            <tr align="center"><td><input type="text" id="pseudo" name="_username" /></td></tr>
+
+            <tr align="center"><td><label for="password">Mot de passe:</label></td></tr>
+            <tr align="center"><td><input type="password" id="password" name="_password" /></td></tr>
+
+            <tr align="center"><td><button type="submit" class="btn btn-primary">login</button></tr></td>
+        </table>
+        </form>
+    </fieldset>
+
+    <ul>
+        <li>
+            <a href="{{ path('users_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

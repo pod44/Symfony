@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>S'inscrire</h1>
+    <fieldset class="fieldsetInscription">
+            {{ form_start(form) }}
+            
+                <table class="tableFieldset">
+                    <tr align="center"><td>{{ form_label(form.pseudo, "Pseudo") }}</td></tr>
+                    <tr align="center"><td>{{ form_widget(form.pseudo) }}</td></tr>
+
+                    <tr align="center"><td>{{ form_label(form.mail, "E-mail") }}</td></tr>
+                    <tr align="center"><td>{{ form_widget(form.mail) }}</td></tr>
+
+                    <tr align="center"><td>{{ form_label(form.dateNaissance, "Date de naissance") }}</td></tr>
+                    <tr align="center"><td>{{ form_widget(form.dateNaissance) }}</td></tr>
+
+                    <tr align="center"><td>{{ form_label(form.password, "Mot de passe") }}</td></tr>
+                    <tr align="center"><td>{{ form_widget(form.password) }}</td></tr>
+
+                    <tr align="center"><td>{{ form_label(form.avatar, "Avatar") }}</td></tr>
+                    <tr align="center"><td>{{ form_widget(form.avatar) }}</td></tr>
+                
+                    <tr align="center"><td><input type="submit" class="btn btn-primary" value="S'inscrire" /></td></tr>
+                </table>
+            
+            {{ form_end(form) }}
+    </fieldset>
+
+    <ul>
+        <li>
+            <a href="{{ path('users_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
